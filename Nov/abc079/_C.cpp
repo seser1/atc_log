@@ -8,7 +8,7 @@
 using namespace std;
 
 vector<int> n;
-string ans = "";
+string ans = "", in;
 
 void df(int c, int sum, string s) {
 	if (ans != "") return;
@@ -16,17 +16,16 @@ void df(int c, int sum, string s) {
 		if (sum == 7)ans = s;
 		return;
 	}
-	df(c + 1, sum + n[c], s + "+" + std::to_string(n[c]));
-	df(c + 1, sum - n[c], s + "-" + std::to_string(n[c]));
+	df(c + 1, sum + n[c], s + "+" + in[c]);
+	df(c + 1, sum - n[c], s + "-" + in[c]);
 	return;
 }
 
 int main()
 {
-	string s;
-	cin >> s;
+	cin >> in;
 
-	for (int i = 0; i < s.size(); i++) n.push_back(s[i] - '0');
+	for (int i = 0; i < in.size(); i++) n.push_back(in[i] - '0');
 	df(1, n[0], std::to_string(n[0]));
 	cout << ans << "=7" << endl;
 

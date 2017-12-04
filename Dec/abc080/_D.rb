@@ -1,28 +1,33 @@
-n,c=gets.chomp.split("").map!{|x| x.to_i}
+n,c=gets.chomp.split(" ").map(&:to_i)
 
 st=tt=ans=tmp=0
 s=[], t=[], j=[]
 
 n.times do |i|
-  si,ti,c=gets.chomp.split("").map!{|x| x.to_i}
+  si,ti,c=gets.chomp.split(" ").map(&:to_i)
   s[i]=[si, c]
   t[i]=[ti, c]
 end
 
+s=s.sort
+t=t.sort
 
 s.each do |i|
-  if i[1] == t[i[0]] then
-	t.delete_at(i[0])
-	s.delete(i)
+  while t[tt] && i[0] >= t[tt][0] do
+	if  i[0] == t[tt][0] && i[1] == t[tt][1] then
+  	  t.delete_at(tt)
+	  s.delete(i)
+	end
+    tt+=1
   end
+end
+tt=0
+
+s.each do |i|
   i[0]-=1 if i
 end
 
-#s=s.map { |n| n-1 }
 j=s+t
-
-s=s.sort
-t=t.sort
 j=j.sort
 
 j.each do |i|

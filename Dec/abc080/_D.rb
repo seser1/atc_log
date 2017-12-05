@@ -14,29 +14,24 @@ t=t.sort
 
 s.each do |i|
   while t[tt] && i[0] >= t[tt][0] do
-	if  i[0] == t[tt][0] && i[1] == t[tt][1] then
-  	  t.delete_at(tt)
-	  s.delete(i)
-	end
+    t[tt][0]=i[0]=-1 if i[0] == t[tt][0] && i[1] == t[tt][1]
     tt+=1
   end
 end
 tt=0
 
 s.each do |i|
-  i[0]-=1 if i
+  i[0]-=1
 end
 
-j=s+t
-j=j.sort
-
+j=(s+t).sort
 j.each do |i|
   while s[st] && s[st][0] == i[0] do
-	tmp+=1
+	tmp+=1 if s[st][0] >=0
 	st+=1
   end
   while t[tt] && t[tt][0] == i[0] do
-	tmp-=1
+	tmp-=1 if t[tt][0] >=0
 	tt+=1
   end  
   ans = [ans, tmp].max

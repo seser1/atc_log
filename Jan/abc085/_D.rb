@@ -1,8 +1,8 @@
 N,h=gets.split(' ').map(&:to_i)
 res,a,b=0,[],[]
 N.times{|i|a[i],b[i]=gets.split(' ').map(&:to_i)}
-a=a.sort{|i, j| j<=>i}
-b=b.sort{|i, j| j<=>i}
+a=a.sort.reverse
+b=b.sort.reverse
 while h>0
   if b[0]!=nil&&a[0]<b[0]
     h-=b.shift

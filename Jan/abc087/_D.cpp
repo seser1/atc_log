@@ -2,8 +2,8 @@
 #include<string>
 #include<algorithm>
 #include<vector>
-#include <string.h>
-#include <math.h>
+#include<string.h>
+#include<math.h>
 
 using namespace std;
 
@@ -19,17 +19,16 @@ struct NODE {
 } node[200000];
 
 void dfs(int ne, int x) {
-	cout << "dfs" << endl;
-	if (node[ne].vis) 
+	if (node[ne].vis) {
 		if (node[ne].x != x)flag = false;
+	}
 	else {
 		node[ne].vis = true;
 		node[ne].x = x;
-		for (auto it = node[ne].inf.begin(); it != node[ne].inf.end(); ++it)
+		for (auto it = node[ne].inf.begin(); it != node[ne].inf.end(); it++)
 			dfs((*it).first, x + (*it).second);
 	}
 }
-
 
 int main()
 {
@@ -44,9 +43,8 @@ int main()
 		node[r].inf.push_back(pair<int, int>(l, -d));
 	}
 
-	for (int i = 0; i < n; i++) {
-		if(! node[i].vis)dfs(i, 0);
-	}
+	for (int i = 0; i < n; i++) 
+		if(!node[i].vis)dfs(i, 0);
 
 	cout << (flag ? "Yes" : "No") << endl;
 

@@ -1,8 +1,8 @@
 N,M,R=gets.split.map(&:to_i)
 r=gets.split.map(&:to_i).map!{|x|x-1}
-$node=Array.new(N){Array.new(N,100_001)}
+$ans=MAX=1e12
+$node=Array.new(N){Array.new(N,MAX)}
 N.times{|i|$node[i][i]=0}
-$ans=1000_000_000
 def dfs(re,n,sum)
   if re.size==0 then
     $ans=[$ans,sum].min
@@ -22,10 +22,11 @@ M.times{
   a,b,c=gets.split.map(&:to_i)
   $node[a-1][b-1]=$node[b-1][a-1]=c
 }
-N.times{|i|
-  N.times{|j|
-    N.times{|k|
-      $node[i][j]=[$node[i][j],$node[i][k]+$node[k][j]].min
+N.times{|k|
+  N.times{|i|
+    N.times{|j|
+      t=$node[i][k]+$node[k][j]
+      $node[i][j]=t if $node[i][j]>t
     }
   }
 }

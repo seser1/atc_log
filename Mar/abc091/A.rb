@@ -1,2 +1,2 @@
-n=gets.chomp.to_i
-puts n.div(3)
+a,b,c=gets.split.map(&:to_i)
+puts a+b>=c ? 'Yes' : 'No'
